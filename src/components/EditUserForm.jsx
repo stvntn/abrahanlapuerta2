@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 const EditUserForm  = (props) => {
 
     //console.log(props.currentUser)
 
-    const {register, setValue, handleSubmit, formState: { errors }} = useForm({
+    const {register, setValue, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: props.currentUser        
     });
 
-    setValue('name', props.currentUser.name);
-    setValue('username', props.currentUser.username);
+    /*setValue('name', props.currentUser.name , { shouldValidate: true });
+    setValue('username', props.currentUser.username , { shouldValidate: true });*/
+
+    useEffect(() => {
+        reset(props.currentUser)
+    }, [ props.currentUser ])
 
     const onSubmit = (data, e) => {
         console.log(data)

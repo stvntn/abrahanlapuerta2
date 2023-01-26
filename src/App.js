@@ -27,9 +27,16 @@ function App() {
   //Eliminar Usuarios
   const deleteUser  = id => {
 
-    const arrayFiltrado = setUsers(users.filter(user => user.id !== id));
+    let arrayFiltrado = []
+    users.forEach(element => {
+      if (element.id !== id) {
+        arrayFiltrado.push(element)
+      }
+    });
 
     setUsers(arrayFiltrado);
+
+    console.log(id)
     
   }
 
@@ -41,6 +48,7 @@ const [currentUser, setCurrentUser] = useState({
 });
 
 const editRow = (user) => {
+  console.log(user, '>>>>>>>>>>>>>>')
     setEditing(true);
     setCurrentUser({
       id: user.id, name: user.name, username: user.username
